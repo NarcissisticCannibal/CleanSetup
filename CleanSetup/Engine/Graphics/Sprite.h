@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Texture.h"
-#include "GLFW/glfw3.h"
 #include <iostream>
 #include <string>
+#include "GLFW/glfw3.h"
 
 using namespace std;
 
@@ -17,8 +17,13 @@ public:
 	void Update();
 	void Render();
 
+	float getSpeed();
+
+	void setSpeed(float _speed);
+	void changeSpeed(float _change);
 	void setPos(float _xPos, float _yPos);
 	void move(float _x, float _y);
+	void moveDirection(float _x, float _y);
 	void setRot(float _rot);
 	void addRot(float _rot);
 	void setScale(float scale);
@@ -27,6 +32,7 @@ public:
 private:
 
 	Texture texture;
+	float speed;
 	float xPos, yPos;
 	float rot;
 	float xScale, yScale;

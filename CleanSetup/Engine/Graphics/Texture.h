@@ -1,9 +1,9 @@
 #pragma once
 
-#include "GLFW/glfw3.h"
 #include "Soil.h"
 #include <string>
 #include <iostream>
+#include "GLFW/glfw3.h"
 
 using namespace std;
 

@@ -5,6 +5,7 @@
 int Engine::SCR_HEIGHT = 600;
 int Engine::SCR_WIDTH = 1024;
 GLFWwindow* Engine::myWindow = NULL;
+double Engine::dt = 0;
 
 Engine::Engine() {
 	
@@ -14,10 +15,15 @@ Engine::~Engine() {
 
 }
 
+double Engine::getDT() {
+	return dt;
+}
+
 void resizeCallback(GLFWwindow* window, int width, int height);
 
 int Engine::Initialize(const char* windowTitle) {
 
+	gamepad = Gamepad(1);
 	if (glfwInit() == GL_FALSE) {
 		cout << "glfwInit failed." << endl;
 		return -1;
@@ -27,12 +33,7 @@ int Engine::Initialize(const char* windowTitle) {
 
 	glfwGetVersion(&major, &minor, &rev);
 
-	cout << major << "." << minor << ":" << rev << endl;
-
-	for (int i = 0; i < GLFW_JOYSTICK_LAST; i++) {
-		int re = glfwJoystickPresent(i + 1);
-		cout << re << endl;
-	}
+	cout << "GLFW Version: " << major << "." << minor << ":" << rev << endl;
 
 	myWindow = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, windowTitle, NULL, NULL);
 
@@ -70,13 +71,16 @@ int Engine::Initialize(const char* windowTitle) {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+	last = glfwGetTime();
+
 	return 0;
 }
 
 void Engine::Update() {
-
+	double now = glfwGetTime();
+	dt = now - last;
+	last = now;
 	glfwPollEvents();
-
 }
 
 void Engine::BeginRender() {

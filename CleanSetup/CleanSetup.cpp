@@ -4,6 +4,7 @@
 #include "Engine/Graphics/Sprite.h"
 #include "Engine/IO/Mouse.h"
 #include "Engine/IO/Keyboard.h"
+#include "Engine/IO/Gamepad.h"
 
 using namespace std;
 
@@ -21,6 +22,11 @@ int main(){
 		testSprite.Update();
 		//testSprite.setPos((float)Mouse::getMouseX(), (float)Mouse::getMouseY());
 		testSprite.setScale(2.0);
+		engine.gamepad.Update();
+		testSprite.moveDirection(engine.gamepad.lStickX(), engine.gamepad.lStickY());
+		if (engine.gamepad.buttonDown(xButtons.A)) testSprite.changeSpeed(10);
+		if (engine.gamepad.buttonDown(xButtons.B)) testSprite.changeSpeed(-10);
+		engine.gamepad.RefreshState();
 
 		if (Mouse::ButtonDown(GLFW_MOUSE_BUTTON_1)) {
 			testSprite.addRot(10.0);
@@ -52,6 +58,8 @@ int main(){
 
 		engine.EndRender();
 	}
+
+	glfwTerminate();
 
 	return 0;
 }
