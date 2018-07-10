@@ -18,7 +18,7 @@ public:
 	Engine();
 	~Engine();
 
-	static double getDT();
+	static float getDT();
 
 	int Initialize(const char* windowTitle);
 
@@ -31,7 +31,7 @@ public:
 private:
 	
 	static GLFWwindow* myWindow;
-	static double dt;
-	double last;
+	static float dt;
+	float last;
 
 };

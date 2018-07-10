@@ -95,7 +95,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>D:\CleanSetup\packages\GLFW\lib\glfw3dll.lib;D:\CleanSetup\packages\SOIL\libs\SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalOptions>/LTCG %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/LTCG:INCREMENTAL %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -133,6 +133,7 @@
     <ClInclude Include="Engine\IO\Gamepad.h" />
     <ClInclude Include="Engine\IO\Keyboard.h" />
     <ClInclude Include="Engine\IO\Mouse.h" />
+    <ClInclude Include="Engine\Math\Vector3.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +144,7 @@
     <ClCompile Include="Engine\IO\Gamepad.cpp" />
     <ClCompile Include="Engine\IO\Keyboard.cpp" />
     <ClCompile Include="Engine\IO\Mouse.cpp" />
+    <ClCompile Include="Engine\Math\Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CleanSetup.rc" />

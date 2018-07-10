@@ -14,7 +14,7 @@ int main(){
 
 	engine.Initialize("OpenGL Testing");
 
-	Sprite testSprite = Sprite("Assets/Sprites/crude1.png", 100, 100);
+	Sprite testSprite = Sprite("Assets/Sprites/crude1.png", Vector3(100, 100));
 
 	while (true) {
 
@@ -23,7 +23,8 @@ int main(){
 		//testSprite.setPos((float)Mouse::getMouseX(), (float)Mouse::getMouseY());
 		testSprite.setScale(2.0);
 		engine.gamepad.Update();
-		testSprite.moveDirection(engine.gamepad.lStickX(), engine.gamepad.lStickY());
+		Vector3 dir = Vector3(engine.gamepad.lStickX(), engine.gamepad.lStickY());
+		testSprite.moveDirection(dir);
 		if (engine.gamepad.buttonDown(xButtons.A)) testSprite.changeSpeed(10);
 		if (engine.gamepad.buttonDown(xButtons.B)) testSprite.changeSpeed(-10);
 		engine.gamepad.RefreshState();
@@ -37,19 +38,19 @@ int main(){
 		}
 
 		if (Keyboard::keyHeld(GLFW_KEY_W)) {
-			testSprite.move(0, 1);
+			testSprite.move(Vector3(0, 10));
 		}
 
 		if (Keyboard::keyHeld(GLFW_KEY_A)) {
-			testSprite.move(-1, 0);
+			testSprite.move(Vector3(-10, 0));
 		}
 
 		if (Keyboard::keyHeld(GLFW_KEY_S)) {
-			testSprite.move(0, -1);
+			testSprite.move(Vector3(0, -10));
 		}
 
 		if (Keyboard::keyHeld(GLFW_KEY_D)) {
-			testSprite.move(1, 0);
+			testSprite.move(Vector3(10, 0));
 		}
 
 		engine.BeginRender();

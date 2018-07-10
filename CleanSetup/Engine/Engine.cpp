@@ -5,7 +5,7 @@
 int Engine::SCR_HEIGHT = 600;
 int Engine::SCR_WIDTH = 1024;
 GLFWwindow* Engine::myWindow = NULL;
-double Engine::dt = 0;
+float Engine::dt = 0;
 
 Engine::Engine() {
 	
@@ -15,7 +15,7 @@ Engine::~Engine() {
 
 }
 
-double Engine::getDT() {
+float Engine::getDT() {
 	return dt;
 }
 
@@ -24,6 +24,9 @@ void resizeCallback(GLFWwindow* window, int width, int height);
 int Engine::Initialize(const char* windowTitle) {
 
 	gamepad = Gamepad(1);
+
+	if (gamepad.connected()) cout << "Gamepad 1 connected!" << endl;
+
 	if (glfwInit() == GL_FALSE) {
 		cout << "glfwInit failed." << endl;
 		return -1;
@@ -71,13 +74,13 @@ int Engine::Initialize(const char* windowTitle) {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	last = glfwGetTime();
+	last = (float) glfwGetTime();
 
 	return 0;
 }
 
 void Engine::Update() {
-	double now = glfwGetTime();
+	float now = (float) glfwGetTime();
 	dt = now - last;
 	last = now;
 	glfwPollEvents();

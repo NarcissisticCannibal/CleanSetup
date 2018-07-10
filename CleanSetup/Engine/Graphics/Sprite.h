@@ -1,18 +1,16 @@
 #pragma once
 
 #include "Texture.h"
-#include <iostream>
+#include "../Math/Vector3.h"
 #include <string>
 #include "GLFW/glfw3.h"
-
-using namespace std;
 
 class Sprite {
 public:
 
 	Sprite();
 	Sprite(string path);
-	Sprite(string path, float _xPos, float _yPos);
+	Sprite(string path, Vector3 _pos);
 
 	void Update();
 	void Render();
@@ -21,19 +19,19 @@ public:
 
 	void setSpeed(float _speed);
 	void changeSpeed(float _change);
-	void setPos(float _xPos, float _yPos);
-	void move(float _x, float _y);
-	void moveDirection(float _x, float _y);
+	void setPos(Vector3 _pos);
+	void move(Vector3 _m); //Moves along the given vector
+	void moveDirection(Vector3 _dir); //Moves in the direction of the given vector, distance normalized to speed
 	void setRot(float _rot);
 	void addRot(float _rot);
-	void setScale(float scale);
-	void setScale(float _xScale, float _yScale);
+	void setScale(float _scale);
+	void setScale(Vector3 _scale);
 
 private:
 
 	Texture texture;
 	float speed;
-	float xPos, yPos;
+	Vector3 pos;
 	float rot;
-	float xScale, yScale;
+	Vector3 scale;
 };
