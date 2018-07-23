@@ -30,11 +30,11 @@ int main(){
 		engine.gamepad.RefreshState();
 
 		if (Mouse::ButtonDown(GLFW_MOUSE_BUTTON_1)) {
-			testSprite.addRot(10.0);
+			testSprite.addRot(1);
 		}
 
 		if (Mouse::ButtonUp(GLFW_MOUSE_BUTTON_2)) {
-			testSprite.addRot(-10.0);
+			testSprite.addRot(-1);
 		}
 
 		if (Keyboard::keyHeld(GLFW_KEY_W)) {

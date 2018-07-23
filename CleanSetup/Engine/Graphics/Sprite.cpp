@@ -9,6 +9,7 @@ Sprite::Sprite() {
 	speed = SPEED;
 	rot = 0;
 	pos = Vector3(0);
+	scale = Vector3(1);
 	texture = Texture();
 }
 
@@ -16,6 +17,7 @@ Sprite::Sprite(string path) {
 	speed = SPEED;
 	rot = 0;
 	pos = Vector3(0);
+	scale = Vector3(1);
 	texture = Texture(path);
 }
 
@@ -23,6 +25,7 @@ Sprite::Sprite(string path, Vector3 _pos) {
 	speed = SPEED;
 	rot = 0;
 	pos = _pos;
+	scale = Vector3(1);
 	texture = Texture(path);
 }
 
@@ -58,6 +61,10 @@ float Sprite::getSpeed() {
 	return speed;
 }
 
+Vector3 Sprite::getSize() {
+	return Vector3((float) texture.getWidth(), (float) texture.getHeight());
+}
+
 void Sprite::setSpeed(float _speed) {
 	speed = std::max(0.0f, _speed);
 }
@@ -80,11 +87,14 @@ void Sprite::moveDirection(Vector3 _dir) {
 }
 
 void Sprite::setRot(float _rot) {
-	rot = (float) fmod(_rot, 360.0);
+	rot = _rot;
+	while (rot > 360) {
+		rot -= 360;
+	}
 }
 
 void Sprite::addRot(float _rot) {
-	rot = (float) fmod(rot + _rot, 360.0) * Engine::getDT();
+	rot = (float) fmod(rot + _rot * Engine::getDT() * speed, 360.0);
 }
 
 void Sprite::setScale(float _scale) {

@@ -16,6 +16,7 @@ public:
 	void Render();
 
 	float getSpeed();
+	Vector3 getSize();
 
 	void setSpeed(float _speed);
 	void changeSpeed(float _change);
