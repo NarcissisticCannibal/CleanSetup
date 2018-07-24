@@ -5,6 +5,7 @@
 #include "Engine/IO/Mouse.h"
 #include "Engine/IO/Keyboard.h"
 #include "Engine/IO/Gamepad.h"
+#include "GameElements/Player.h"
 
 using namespace std;
 
@@ -14,53 +15,65 @@ int main(){
 
 	engine.Initialize("OpenGL Testing");
 
-	Sprite testSprite = Sprite("Assets/Sprites/crude1.png", Vector3(100, 100));
+	//Sprite testSprite = Sprite("Assets/Sprites/crude1.png", Vector2(100, 100));
+	Player player = Player();
+	player.Initialize("Assets/Sprites/v2.png", Vector2(100, 100), 1, 1);
 
-	while (true) {
+	bool running = true;
+
+	while (running) {
 
 		engine.Update();
-		testSprite.Update();
+		player.Update();
 		//testSprite.setPos((float)Mouse::getMouseX(), (float)Mouse::getMouseY());
-		testSprite.setScale(2.0);
 		engine.gamepad.Update();
-		Vector3 dir = Vector3(engine.gamepad.lStickX(), engine.gamepad.lStickY());
-		testSprite.moveDirection(dir);
-		if (engine.gamepad.buttonDown(xButtons.A)) testSprite.changeSpeed(10);
-		if (engine.gamepad.buttonDown(xButtons.B)) testSprite.changeSpeed(-10);
+		Vector2 dir = Vector2(engine.gamepad.lStickX(), engine.gamepad.lStickY());
+		player.playerS.moveDirection(dir);
+		if (engine.gamepad.buttonDown(xButtons.A)) player.playerS.changeSpeed(10);
+		if (engine.gamepad.buttonDown(xButtons.B)) player.playerS.changeSpeed(-10);
+		if (engine.gamepad.buttonDown(xButtons.back)) running = false;
 		engine.gamepad.RefreshState();
 
 		if (Mouse::ButtonDown(GLFW_MOUSE_BUTTON_1)) {
-			testSprite.addRot(1);
+			player.playerS.addRot(1);
 		}
 
 		if (Mouse::ButtonUp(GLFW_MOUSE_BUTTON_2)) {
-			testSprite.addRot(-1);
+			player.playerS.addRot(-1);
 		}
 
 		if (Keyboard::keyHeld(GLFW_KEY_W)) {
-			testSprite.move(Vector3(0, 10));
+			player.playerS.moveDirection(Vector2(0, 10));
 		}
 
 		if (Keyboard::keyHeld(GLFW_KEY_A)) {
-			testSprite.move(Vector3(-10, 0));
+			player.playerS.moveDirection(Vector2(-10, 0));
 		}
 
 		if (Keyboard::keyHeld(GLFW_KEY_S)) {
-			testSprite.move(Vector3(0, -10));
+			player.playerS.moveDirection(Vector2(0, -10));
 		}
 
 		if (Keyboard::keyHeld(GLFW_KEY_D)) {
-			testSprite.move(Vector3(10, 0));
+			player.playerS.moveDirection(Vector2(10, 0));
+		}
+
+		if (Keyboard::keyHeld(GLFW_KEY_ESCAPE)) {
+			running = false;
 		}
 
 		engine.BeginRender();
 
-		testSprite.Render();
+		player.Render();
 
 		engine.EndRender();
 	}
 
 	glfwTerminate();
+
+	cout << "Press any key to terminate" << endl;
+
+	getchar();
 
 	return 0;
 }

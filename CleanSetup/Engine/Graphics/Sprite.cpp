@@ -8,24 +8,24 @@
 Sprite::Sprite() {
 	speed = SPEED;
 	rot = 0;
-	pos = Vector3(0);
-	scale = Vector3(1);
+	pos = Vector2(0);
+	scale = Vector2(1);
 	texture = Texture();
 }
 
 Sprite::Sprite(string path) {
 	speed = SPEED;
 	rot = 0;
-	pos = Vector3(0);
-	scale = Vector3(1);
+	pos = Vector2(0);
+	scale = Vector2(1);
 	texture = Texture(path);
 }
 
-Sprite::Sprite(string path, Vector3 _pos) {
+Sprite::Sprite(string path, Vector2 _pos) {
 	speed = SPEED;
 	rot = 0;
 	pos = _pos;
-	scale = Vector3(1);
+	scale = Vector2(1);
 	texture = Texture(path);
 }
 
@@ -61,8 +61,20 @@ float Sprite::getSpeed() {
 	return speed;
 }
 
-Vector3 Sprite::getSize() {
-	return Vector3((float) texture.getWidth(), (float) texture.getHeight());
+Vector2 Sprite::getSize() {
+	return Vector2((float) texture.getWidth(), (float) texture.getHeight());
+}
+
+Vector2* Sprite::getPos() {
+	return &pos;
+}
+
+float* Sprite::getRot() {
+	return &rot;
+}
+
+Vector2* Sprite::getScale() {
+	return &scale;
 }
 
 void Sprite::setSpeed(float _speed) {
@@ -74,15 +86,15 @@ void Sprite::changeSpeed(float _change) {
 	setSpeed(speed + _change);
 }
 
-void Sprite::setPos(Vector3 _pos) {
+void Sprite::setPos(Vector2 _pos) {
 	pos = _pos;
 }
 
-void Sprite::move(Vector3 _m) {
+void Sprite::move(Vector2 _m) {
 	pos = (pos + _m * speed * Engine::getDT());
 }
 
-void Sprite::moveDirection(Vector3 _dir) {
+void Sprite::moveDirection(Vector2 _dir) {
 	move(_dir / _dir.mag());
 }
 
@@ -102,6 +114,6 @@ void Sprite::setScale(float _scale) {
 	scale.y = _scale;
 }
 
-void Sprite::setScale(Vector3 _scale) {
+void Sprite::setScale(Vector2 _scale) {
 	scale = _scale;
 }
