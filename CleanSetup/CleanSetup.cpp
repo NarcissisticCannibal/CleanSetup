@@ -28,7 +28,7 @@ int main(){
 		//testSprite.setPos((float)Mouse::getMouseX(), (float)Mouse::getMouseY());
 		engine.gamepad.Update();
 		Vector2 force = Vector2(engine.gamepad.lStickX(), engine.gamepad.lStickY());
-		player.playerRB.addForce(force * 10);
+		player.playerRB.addForce(force * 2);
 
 		if (engine.gamepad.buttonDown(xButtons.A)) player.playerS.changeSpeed(10);
 		if (engine.gamepad.buttonDown(xButtons.B)) player.playerS.changeSpeed(-10);

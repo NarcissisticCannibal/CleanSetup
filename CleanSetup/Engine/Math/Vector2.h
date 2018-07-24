@@ -16,6 +16,7 @@ public:
 	Vector2 operator*(const Vector2& other);
 	Vector2 operator/(float _v); //Returns zero vector when dividing by zero.
 	Vector2 operator*(float _v);
+	Vector2 direction();
 
 	float mag();
 

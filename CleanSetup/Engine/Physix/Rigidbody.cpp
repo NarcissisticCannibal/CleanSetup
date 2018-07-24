@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Rigidbody.h"
 #include "../Engine.h"
 
@@ -9,8 +10,8 @@
 Rigidbody::Rigidbody() {
 	friction = 1;
 	mass = 1;
-	drag = 1;
-	velocity = 0;
+	drag = 0.001;
+	velocity = Vector2();
 }
 
 void Rigidbody::Initialize(float _friction, Vector2* _pos, Vector2* _scale, float* _rot, Vector2 _size, float _mass) {
@@ -24,12 +25,15 @@ void Rigidbody::Initialize(float _friction, Vector2* _pos, Vector2* _scale, floa
 
 void Rigidbody::Update() {
 	// TODO: Friction if object is experiencing it
-	// TODO: Air resistance
 
 	// Gravitational acceleration, maybe make gravity variable to be gotten from current level?
+	
+	Vector2 air = (velocity * velocity) * (velocity.direction() * -1.0f) * (drag);
 	addForce(Vector2(0.0, GRAVITY));
+	addForce(air);
 
 	*pos = *pos + (velocity * Engine::getDT());
+
 }
 
 void Rigidbody::Render(Vector3 _color) {

@@ -56,6 +56,19 @@ Vector2 Vector2::operator*(float _v) {
 	return ret;
 }
 
+Vector2 Vector2::direction() {
+	Vector2 ret;
+	if (x > 0) ret.x = 1;
+	else if (x < 0) ret.x = -1;
+	else ret.x = 0;
+
+	if (y > 0) ret.y = 1;
+	else if (y < 0) ret.y = -1;
+	else ret.y = 0;
+
+	return ret;
+}
+
 Vector2 Vector2::operator/(float _v) {
 	if (_v == 0) return Vector2();
 	Vector2 ret;
