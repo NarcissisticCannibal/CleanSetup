@@ -27,8 +27,9 @@ int main(){
 		player.Update();
 		//testSprite.setPos((float)Mouse::getMouseX(), (float)Mouse::getMouseY());
 		engine.gamepad.Update();
-		Vector2 dir = Vector2(engine.gamepad.lStickX(), engine.gamepad.lStickY());
-		player.playerS.moveDirection(dir);
+		Vector2 force = Vector2(engine.gamepad.lStickX(), engine.gamepad.lStickY());
+		player.playerRB.addForce(force * 10);
+
 		if (engine.gamepad.buttonDown(xButtons.A)) player.playerS.changeSpeed(10);
 		if (engine.gamepad.buttonDown(xButtons.B)) player.playerS.changeSpeed(-10);
 		if (engine.gamepad.buttonDown(xButtons.back)) running = false;
@@ -71,9 +72,7 @@ int main(){
 
 	glfwTerminate();
 
-	cout << "Press any key to terminate" << endl;
-
-	getchar();
+	//getchar();
 
 	return 0;
 }

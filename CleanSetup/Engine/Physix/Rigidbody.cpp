@@ -2,7 +2,7 @@
 #include "../Engine.h"
 
 /* These are constant for now, may become variable later. */
-#define GRAVITY -9.81f
+#define GRAVITY -1.0f
 #define MINIMUM_MASS 0.1f
 #define MINIMUM_DRAG 0.1f
 
@@ -10,6 +10,7 @@ Rigidbody::Rigidbody() {
 	friction = 1;
 	mass = 1;
 	drag = 1;
+	velocity = 0;
 }
 
 void Rigidbody::Initialize(float _friction, Vector2* _pos, Vector2* _scale, float* _rot, Vector2 _size, float _mass) {
