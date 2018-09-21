@@ -10,7 +10,7 @@
 Rigidbody::Rigidbody() {
 	friction = 1;
 	mass = 1;
-	drag = 0.001;
+	drag = 0.001f;
 	velocity = Vector2();
 }
 

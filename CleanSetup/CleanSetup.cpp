@@ -44,19 +44,19 @@ int main(){
 		}
 
 		if (Keyboard::keyHeld(GLFW_KEY_W)) {
-			player.playerS.moveDirection(Vector2(0, 10));
+			player.playerS.moveDirection(Vector2(0, 12));
 		}
 
 		if (Keyboard::keyHeld(GLFW_KEY_A)) {
-			player.playerS.moveDirection(Vector2(-10, 0));
+			player.playerS.moveDirection(Vector2(-12, 0));
 		}
 
 		if (Keyboard::keyHeld(GLFW_KEY_S)) {
-			player.playerS.moveDirection(Vector2(0, -10));
+			player.playerS.moveDirection(Vector2(0, -12));
 		}
 
 		if (Keyboard::keyHeld(GLFW_KEY_D)) {
-			player.playerS.moveDirection(Vector2(10, 0));
+			player.playerS.moveDirection(Vector2(12, 0));
 		}
 
 		if (Keyboard::keyHeld(GLFW_KEY_ESCAPE)) {
